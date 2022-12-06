@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { RowsComponent } from './components/rows/rows.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { HomeComponent } from './pages/home/home.component';
+import { MovieComponent } from './pages/movie/movie.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { HomeComponent } from './pages/home/home.component';
     AppComponent,
     RowsComponent,
     BannerComponent,
-    HomeComponent
+    HomeComponent,
+    MovieComponent
   ],
   imports: [
     BrowserModule,

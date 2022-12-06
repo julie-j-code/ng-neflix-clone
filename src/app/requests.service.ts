@@ -61,4 +61,19 @@ export class Requests {
     return this.http.get(`${this.baseurl}/discover/movie?api_key=${this.apikey}&with_genres=53`);
   }
 
+  // getmoviedatails
+  getMovieDetails(data: any): Observable<any> {
+    return this.http.get(`${this.baseurl}/movie/${data}?api_key=${this.apikey}`)
+  }
+
+  // getMovieVideo
+  getMovieVideo(data: any): Observable<any> {
+    return this.http.get(`${this.baseurl}/movie/${data}/videos?api_key=${this.apikey}`)
+  }
+
+  // getMovieCast
+  getMovieCast(data: any): Observable<any> {
+    return this.http.get(`${this.baseurl}/movie/${data}/credits?api_key=${this.apikey}`)
+  }
+
 }
