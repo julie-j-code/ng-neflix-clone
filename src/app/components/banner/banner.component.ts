@@ -1,0 +1,30 @@
+import { Component, OnInit } from '@angular/core';
+import { Requests } from '../../requests.service';
+
+@Component({
+  selector: 'app-banner',
+  templateUrl: './banner.component.html',
+  styleUrls: ['./banner.component.css']
+})
+export class BannerComponent implements OnInit {
+
+  bannerResult: any = [];
+
+  constructor(private service: Requests) { }
+
+  ngOnInit(): void {
+
+    this.bannerData();
+  }
+
+
+  // bannerdata
+  bannerData() {
+    this.service.bannerApiData().subscribe((result) => {
+      console.log(result, 'bannerresult#');
+      this.bannerResult = result.results;
+    });
+  }
+
+
+}
