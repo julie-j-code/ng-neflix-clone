@@ -1,21 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
-  selector: 'app-account',
+  selector: 'app-main',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent {
 
+  constructor(
+    private userService: AuthService,
+    private router: Router
+  ) { }
 
-  constructor() {
-    // this.quotesRef = afDb.list(this.dbPath);
-   }
 
-
-
+  onClick() {
+    this.userService.logout()
+      .then(() => {
+        this.router.navigate(['/register']);
+      })
+      .catch(error => console.log(error));
+  }
 
 }
-
-
-

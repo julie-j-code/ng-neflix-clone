@@ -1,7 +1,7 @@
 <div class="container text-center p-5">
 
 
-  <h2>Registration works!</h2>
+  <h2 class="text-light my-5">Registration works!</h2>
   <form #registerForm="ngForm" class="form mx-auto" (ngSubmit)="addData(registerForm.value)">
     <div class="main">
       <div class="my-3">
@@ -19,6 +19,12 @@
       <button class="btn btn-primary">SignUp</button>
     </div>
   </form>
+
+  <div class="bg-dark align-center w-75 mx-auto p-5 text-light my-5 border">
+    <p>Already Registered ? Please, login to your account</p>
+    <button class="btn btn-primary mt-5" routerLink="/login">Login</button>
+
+  </div>
 
   <!-- <ul>
     <li *ngFor="let item of data">
