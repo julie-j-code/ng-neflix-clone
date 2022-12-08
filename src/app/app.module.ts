@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
+
 // import { AngularFireModule } from '@angular/fire/compat';
 // import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 // import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
@@ -15,6 +16,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
+
 import { AppComponent } from './app.component';
 import { RowsComponent } from './components/rows/rows.component';
 import { BannerComponent } from './components/banner/banner.component';
@@ -24,6 +26,8 @@ import { AccountComponent } from './components/account/account.component';
 import { environment } from './environment/environment';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './login/login.component';
+// import { AuthService } from './auth.service';
 // import { RegisterComponent } from './components/register/register.component';
 
 
@@ -36,6 +40,7 @@ import { RegisterComponent } from './components/register/register.component';
     MovieComponent,
     AccountComponent,
     RegisterComponent,
+    LoginComponent
     // RegisterComponent
   ],
   imports: [

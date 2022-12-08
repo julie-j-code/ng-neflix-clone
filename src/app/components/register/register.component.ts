@@ -9,13 +9,12 @@ import {
   deleteDoc
 } from '@angular/fire/firestore'
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, user } from '@angular/fire/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, user } from '@angular/fire/auth';
 
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  templateUrl: './register.component.html'
 })
 export class RegisterComponent {
 
