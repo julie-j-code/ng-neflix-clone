@@ -1,0 +1,38 @@
+<div class="container text-center p-5">
+
+
+  <h2>Registration works!</h2>
+  <form #registerForm="ngForm" class="form mx-auto" (ngSubmit)="addData(registerForm.value)">
+    <div class="main">
+      <div class="my-3">
+        <input class="form-control" name="name" ngModel placeholder="Name" id="name" type="text" class="input-field" />
+      </div>
+      <div class="my-3">
+        <input class="form-control" name="email" ngModel placeholder="Email" id="email" type="email"
+          class="input-field" />
+      </div>
+      <div class="my-3">
+        <input class="form-control" name="password" ngModel placeholder="Password" id="password" type="password"
+          class="input-field" />
+      </div>
+
+      <button class="btn btn-primary">SignUp</button>
+    </div>
+  </form>
+
+  <!-- <ul>
+    <li *ngFor="let item of data">
+      {{ item.email }}
+      {{ item.name }}
+      {{ item.password }}
+      <button (click)="updateData(item.id)">
+        Update
+      </button>
+
+      <button (click)="deleteData(item.id)">
+        Delete
+      </button>
+    </li>
+  </ul> -->
+
+</div>
