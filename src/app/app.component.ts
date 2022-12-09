@@ -9,5 +9,5 @@ export class AppComponent {
   title = 'ng-netflix';
 
 
-  
+
 }

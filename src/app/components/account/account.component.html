@@ -1,5 +1,13 @@
-<div class="container text-center p-5">
-  <h2>Account</h2>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae laborum fugit similique pariatur laboriosam, quam provident et quidem saepe iusto exercitationem cupiditate consectetur molestiae molestias maiores alias repellat voluptate expedita.</p>
+<div class="container text-center p-5 text-light">
+  <h2 class="my-5">Account</h2>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae laborum fugit similique pariatur laboriosam, quam
+    provident et quidem saepe iusto exercitationem cupiditate consectetur molestiae molestias maiores alias repellat
+    voluptate expedita.</p>
+  <div *ngFor="let item of result">
+    <h3>Your information</h3>
+    <p>{{item.email}}</p>
+    <p>{{item.name}}</p>
+    <p *ngIf="item.favorites.length!=0">Your favorites movies : {{item.favorites}}</p>
+  </div>
   <button (click)="onClick()" class="btn btn-outline-danger mt-5">Logout</button>
 </div>
