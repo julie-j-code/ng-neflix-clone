@@ -8,7 +8,6 @@ import {
   updateDoc,
   deleteDoc
 } from '@angular/fire/firestore'
-import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, user } from '@angular/fire/auth';
 
 
@@ -98,20 +97,20 @@ export class RegisterComponent {
       })
   }
 
-  updateData(id: string) {
-    const dataToUpdate = doc(this.firestore, 'users', id);
-    updateDoc(dataToUpdate, {
-      name: 'Jeannet',
-      email: 'jeannet.julie@gmail.com'
-    })
-      .then(() => {
-        alert('Data updated');
-        this.getData()
-      })
-      .catch((err) => {
-        alert(err.message)
-      })
-  }
+  // updateData(id: string) {
+  //   const dataToUpdate = doc(this.firestore, 'users', id);
+  //   updateDoc(dataToUpdate, {
+  //     name: 'Jeannet',
+  //     email: 'jeannet.julie@gmail.com'
+  //   })
+  //     .then(() => {
+  //       alert('Data updated');
+  //       this.getData()
+  //     })
+  //     .catch((err) => {
+  //       alert(err.message)
+  //     })
+  // }
 
   deleteData(id: string) {
     const dataToDelete = doc(this.firestore, 'users', id);
