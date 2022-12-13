@@ -3,11 +3,11 @@ import { Auth } from '@angular/fire/auth';
 import {
   Firestore,
   collection,
-  getDocs,
-  doc
+  getDocs
 } from '@angular/fire/firestore'
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
+import { Requests } from 'src/app/requests.service';
 
 @Component({
   selector: 'app-main',
@@ -19,13 +19,18 @@ export class AccountComponent {
   title = 'angular-firebase';
   public data: any = []
   result: any = {}
+  movieDetails: any = {}
+  myarrayWithOriginalTitles: any = []
+
 
   constructor(
     private userService: AuthService,
     private router: Router,
     public firestore: Firestore,
     private auth: Auth,
+    private service: Requests
   ) { this.getData() }
+
 
   getData() {
     const dbInstance = collection(this.firestore, 'users');
@@ -38,11 +43,29 @@ export class AccountComponent {
         })]
         // console.log(usersData)
         this.result = usersData.filter((value) => {
-          console.log(value['uid'] == userKey);
+          // console.log(value['uid'] == userKey);
           return value['uid'] == userKey
         })
-        console.log(this.result);
+
+        // const myarrayWithOriginalTitles: any = []
+        for (let r in this.result[0].favorites) {
+
+          this.service.getMovieDetails(r).subscribe(async (result) => {
+            // console.log(result, 'getmoviedetails#');
+            await result;
+            this.myarrayWithOriginalTitles.push(result.original_title)
+            console.log(this.myarrayWithOriginalTitles, "Favorites in doc collection with full Original Titles");
+          });
+        }
       })
+  }
+
+
+  getMovieTitle(id: any) {
+    this.service.getMovieDetails(id).subscribe(async (result) => {
+      this.movieDetails = await result.title;
+    });
+
   }
 
   onClick() {
