@@ -10,6 +10,7 @@ import {
   doc,
   updateDoc
 } from '@angular/fire/firestore'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-movie',
@@ -20,8 +21,12 @@ export class MovieComponent implements OnInit {
   dataUser: any = {}
   userUID: any = ""
   data: any
+  like:boolean = false
+  saved:boolean = false
 
   constructor(private service: Requests, private router: ActivatedRoute, private auth: Auth, private firestore: Firestore) {
+
+
   }
 
   getParamId: any;
@@ -29,12 +34,36 @@ export class MovieComponent implements OnInit {
   getMovieVideoResult: any;
   getMovieCastResult: any;
 
+
   ngOnInit(): void {
     this.getParamId = this.router.snapshot.paramMap.get('id');
     console.log(this.getParamId, 'getparamid#');
     this.getMovie(this.getParamId);
     this.getVideo(this.getParamId);
     this.getMovieCast(this.getParamId);
+
+
+
+    const dbInstance = collection(this.firestore, 'users');
+    // first we need to get the doc from users collection that includes a uid equal to the user uid
+    getDocs(dbInstance)
+      .then((response) => {
+        this.data = [...response.docs.map((item) => {
+          return ({ ...item.data(), id: item.id })
+        })]
+        this.dataUser = this.data.filter((iterator: any) => {
+          const userKey = this.auth.currentUser?.uid;
+          return iterator.uid == userKey
+        })
+        this.dataUser[0].favorites.includes(this.getParamId) ? this.like=true: this.like=false
+      })
+
+
+
+
+
+
+
   }
 
 
@@ -64,7 +93,7 @@ export class MovieComponent implements OnInit {
     });
   }
 
-  addFavoriteToUserDoc() {
+  setFavoriteToUserDoc() {
     const dbInstance = collection(this.firestore, 'users');
     // first we need to get the doc from users collection that includes a uid equal to the user uid
     getDocs(dbInstance)
@@ -73,20 +102,28 @@ export class MovieComponent implements OnInit {
           console.log({ ...item.data(), id: item.id })
           return ({ ...item.data(), id: item.id })
         })]
-
-        // return the doc corresponding to the current user in the users collection + the automatic generated id included in the object
-        console.log(this.data);
+        // console.log(this.data);
         this.dataUser = this.data.filter((iterator: any) => {
           const userKey = this.auth.currentUser?.uid;
           return iterator.uid == userKey
         })
         console.log(this.dataUser[0].id);
         const currentUserRef = doc(this.firestore, "users", this.dataUser[0].id)
-        // let newFavorites=[...this.dataUser[0].favorites, this.getParamId]
-        // Set the "favorites" field of the user with userKey to the movie passed in params
-        updateDoc(currentUserRef, {
-          favorites: [...this.dataUser[0].favorites, this.getParamId]
-        });
+        if (this.dataUser[0].favorites.includes(this.getParamId)==false) {
+          updateDoc(currentUserRef, {
+            favorites: [...this.dataUser[0].favorites, this.getParamId]
+          });
+          this.like=true;
+          this.saved=true;
+          } else {
+            updateDoc(currentUserRef, {
+            favorites: [...this.dataUser[0].favorites].filter(item=>item!==this.getParamId)
+          });
+          this.like=false;
+          this.saved=false;
+
+            alert('The film has been removed from your favorites');
+          }
 
       })
   }

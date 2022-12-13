@@ -24,3 +24,17 @@ a:hover{
   color: #ffffff;
   border: 2px solid #ffffff;
 }
+
+.like{
+  background-color: #E50914;
+  position: relative;
+  padding-right: 2rem;
+}
+
+.like::after{
+  content: '♥';
+  color: #ffffff;
+  position: absolute;
+  right: 1rem;
+
+}
