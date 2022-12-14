@@ -43,7 +43,7 @@ export class AccountComponent {
         })]
         // console.log(usersData)
         this.result = usersData.filter((value) => {
-          // console.log(value['uid'] == userKey);
+          console.log(value['uid'] == userKey);
           return value['uid'] == userKey
         })
 

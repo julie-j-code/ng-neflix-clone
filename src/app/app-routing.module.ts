@@ -7,10 +7,12 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MovieComponent } from './pages/movie/movie.component';
 import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { SearchComponent } from './pages/search/search.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
   {path:'movie/:id',component:MovieComponent},
+
   {path:'register',component:RegisterComponent},
   {path:'login',component:LoginComponent},
   {
@@ -18,6 +20,7 @@ const routes: Routes = [
     component: AccountComponent,
     ...canActivate(() => redirectUnauthorizedTo(['/register']))
   },
+  {path:'search',component:SearchComponent},
   {path:'verify-email', component:VerifyEmailComponent}
 
 ];

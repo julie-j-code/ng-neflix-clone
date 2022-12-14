@@ -18,6 +18,13 @@ export class Requests {
     return this.http.get(`${this.baseurl}/trending/all/week?api_key=${this.apikey}`);
   }
 
+  // searchmovive
+  getSearchMovie(data: any): Observable<any> {
+    console.log(data, 'movie#');
+
+    return this.http.get(`${this.baseurl}/search/movie?api_key=${this.apikey}&query=${data.movieName}`);
+  }
+
 
   // trendingmovieapidata
   trendingMovieApiData(): Observable<any> {

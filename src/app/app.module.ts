@@ -27,6 +27,7 @@ import { environment } from './environment/environment';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './login/login.component';
+import { SearchComponent } from './pages/search/search.component';
 // import { AuthService } from './auth.service';
 // import { RegisterComponent } from './components/register/register.component';
 
@@ -40,7 +41,8 @@ import { LoginComponent } from './login/login.component';
     MovieComponent,
     AccountComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    SearchComponent
     // RegisterComponent
   ],
   imports: [
