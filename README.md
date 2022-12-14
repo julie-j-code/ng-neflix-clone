@@ -2,11 +2,6 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
 
-## Memo
-
-to try to return front-end vue the closest way from the react project : 
-npm install -D tailwindcss postcss autoprefixer
-
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
