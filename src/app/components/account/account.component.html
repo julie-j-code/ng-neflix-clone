@@ -8,9 +8,9 @@
     <p>{{item.email}}</p>
     <p>{{item.name}}</p>
     <!-- <p *ngIf="item.favorites.length!=0">Your favorites movies : {{movieDetails.title}}</p> -->
-    <div *ngIf="item.favorites.length!=0">
+    <div *ngIf="item.favorites?.length > 0">
       <h4>Your favorites moovies</h4>
-      <div *ngFor="let moovie of myarrayWithOriginalTitles">{{moovie}}</div>
+      <div *ngFor="let movie of myarrayWithOriginalTitles">{{movie}}</div>
     </div>
   </div>
   <button (click)="onClick()" class="btn btn-outline-danger mt-5">Logout</button>
