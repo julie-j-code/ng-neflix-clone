@@ -11,6 +11,7 @@
     <div *ngIf="item.favorites?.length > 0">
       <h4>Your favorites moovies</h4>
       <div *ngFor="let movie of myarrayWithOriginalTitles">{{movie}}</div>
+      <!-- <div>{{movieDetails}}</div> -->
     </div>
   </div>
   <button (click)="onClick()" class="btn btn-outline-danger mt-5">Logout</button>

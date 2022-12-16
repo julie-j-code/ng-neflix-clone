@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
+import { loggedIn } from '@angular/fire/auth-guard';
 import {
   Firestore,
   collection,
@@ -41,17 +42,16 @@ export class AccountComponent {
         const usersData = [...response.docs.map((item) => {
           return { ...item.data() }
         })]
-        // console.log(usersData)
+        console.log(usersData, "utsersData")
         this.result = usersData.filter((value) => {
           console.log(value['uid'] == userKey);
           return value['uid'] == userKey
         })
-
-        // const myarrayWithOriginalTitles: any = []
-        for (let r in this.result[0].favorites) {
+        console.log(this.result[0].favorites);
+        for (let r of this.result[0].favorites) {
 
           this.service.getMovieDetails(r).subscribe(async (result) => {
-            // console.log(result, 'getmoviedetails#');
+            console.log(result, 'getmoviedetails#');
             await result;
             this.myarrayWithOriginalTitles.push(result.original_title)
             console.log(this.myarrayWithOriginalTitles, "Favorites in doc collection with full Original Titles");
@@ -61,12 +61,6 @@ export class AccountComponent {
   }
 
 
-  getMovieTitle(id: any) {
-    this.service.getMovieDetails(id).subscribe(async (result) => {
-      this.movieDetails = await result.title;
-    });
-
-  }
 
   onClick() {
     this.userService.logout()
